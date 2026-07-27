@@ -7,7 +7,6 @@ st.markdown("""## User can create or
 download AI created resume based on high ATS Score""")
 
 #=======================AGENT CODE=======================
-import IPython as ip
 import os
 import time
 import langchain
