@@ -118,7 +118,8 @@ import base64
 OPTIONS=['delhi','noida','gurugram','shahdara','mumbai','panjab']
 LOCATION=st.sidebar.multiselect('SELECT LOCATION: ', options=OPTIONS)
 JOB_PROFILE=['python developer','gen ai','full stack developer','data analysist']
-
+PROFILE= st.sidebar.multiselect("select job role",
+                                options=JOB_PROFILE)
 job_prompt=f"""based on {PROFILE} jon in {LOCATION},
 I WANT LATEST JOB NEWS IN USING TAVILY,
 TRY TOP 10 SEARCH OR WHATEVER AVAILABLE
