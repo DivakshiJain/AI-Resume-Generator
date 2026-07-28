@@ -115,6 +115,16 @@ query = final_prompt+user_details
 
 import base64
 
+OPTIONS=['delhi','noida','gurugram','shahdara','mumbai','panjab']
+LOCATION=st.sidebar.multiselect('SELECT LOCATION: ', options=OPTIONS)
+JOB_PROFILE=['python developer','gen ai','full stack developer','data analysist']
+
+job_prompt=f"""based on {PROFILE} jon in {LOCATION},
+I WANT LATEST JOB NEWS IN USING TAVILY,
+TRY TOP 10 SEARCH OR WHATEVER AVAILABLE
+AND GIVE RESULTS LIKE NAUKRI THEME DESIGN WITH JOB NAME, JOB DESC, SALARY, APPLY LINK
+output must be in html"""
+
 if st.button('generate resume'):
   with st.spinner("runnign agent"):
 
@@ -130,3 +140,9 @@ if st.button('generate resume'):
         code = code.replace("PROFILE_IMAGE_PLACEHOLDER", data_uri)
    
     st.html(code , width="stretch" , unsafe_allow_javascript=True)
+    st.divider()
+      response=agent.invoke({'messages':[{'role':'user','content':job_prompt}]})
+
+      job_code=response['messages'][-1].content[-1]['text']
+      st.html(job_code, width="strtch", unsafe_allow_javascript=True)
+      
